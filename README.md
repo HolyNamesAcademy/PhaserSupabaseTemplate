@@ -360,6 +360,7 @@ If you are still stuck, contact your instructor with: what you tried, the exact 
 | `npm run lint` | Run ESLint |
 | `npm run format` | Format with Prettier |
 | `npm run format:check` | Check formatting (CI) |
+| `npm run smoke` | End-to-end auth + save check (needs `.env` + live Supabase) |
 
 ## Features
 
