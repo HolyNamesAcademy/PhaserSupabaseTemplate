@@ -1,0 +1,133 @@
+:root {
+  color-scheme: dark;
+  --bg: #0b1220;
+  --panel: #152238;
+  --text: #f4f7fb;
+  --muted: #a8b3c5;
+  --accent: #3d8bfd;
+  --accent-hover: #5a9fff;
+  --danger: #ff6b6b;
+  --border: #2a3b57;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: radial-gradient(circle at top, #1a2740, var(--bg) 55%);
+  color: var(--text);
+}
+
+#game-container {
+  width: 100%;
+  height: 100%;
+}
+
+#game-container canvas {
+  display: block;
+  margin: 0 auto;
+}
+
+.auth-overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(6, 10, 18, 0.72);
+  backdrop-filter: blur(4px);
+  z-index: 20;
+  padding: 1rem;
+}
+
+.auth-overlay.hidden,
+.hidden {
+  display: none !important;
+}
+
+.auth-card {
+  width: min(100%, 360px);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: grid;
+  gap: 0.85rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+.auth-card h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.auth-subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.auth-card label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.auth-card input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #0f1a2c;
+  color: var(--text);
+  padding: 0.7rem 0.8rem;
+  font-size: 1rem;
+}
+
+.auth-card input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.auth-actions {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 0.25rem;
+}
+
+.auth-actions button {
+  border: 0;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+#auth-submit {
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+}
+
+#auth-submit:hover {
+  background: var(--accent-hover);
+}
+
+#auth-toggle {
+  background: transparent;
+  color: var(--muted);
+  text-decoration: underline;
+}
+
+.auth-error {
+  margin: 0;
+  color: var(--danger);
+  font-size: 0.9rem;
+}

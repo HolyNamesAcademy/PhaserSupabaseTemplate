@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects II Game</title>
+  </head>
+  <body>
+    <div id="game-container"></div>
+    <div id="auth-overlay" class="auth-overlay hidden" aria-live="polite">
+      <form id="auth-form" class="auth-card">
+        <h1 id="auth-title">Sign In</h1>
+        <p class="auth-subtitle">Create an account or sign in to play and save your score.</p>
+
+        <label>
+          Email
+          <input id="auth-email" type="email" autocomplete="username" required />
+        </label>
+
+        <label>
+          Password
+          <input
+            id="auth-password"
+            type="password"
+            autocomplete="current-password"
+            minlength="6"
+            required
+          />
+        </label>
+
+        <label id="auth-username-field" class="hidden">
+          Username
+          <input id="auth-username" type="text" autocomplete="nickname" maxlength="24" />
+        </label>
+
+        <p id="auth-error" class="auth-error hidden" role="alert"></p>
+
+        <div class="auth-actions">
+          <button id="auth-submit" type="submit">Sign In</button>
+          <button id="auth-toggle" type="button">Need an account? Register</button>
+        </div>
+      </form>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
