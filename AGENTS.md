@@ -1,4 +1,4 @@
-# Projects II Game Template
+# PhaserSupabaseTemplate
 
 Notes for AI coding tools (and humans) working in this repo.
 

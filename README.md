@@ -1,4 +1,4 @@
-# Projects II Game Template
+# PhaserSupabaseTemplate
 
 A classroom starter for building a **browser game** with Phaser and Supabase.
 
