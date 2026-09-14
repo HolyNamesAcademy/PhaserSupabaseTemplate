@@ -1,8 +1,10 @@
 # PhaserSupabaseTemplate
 
-A classroom starter for building a **browser game** with Phaser and Supabase.
+A classroom **template** for building a **browser game** with Phaser and Supabase.
 
 **Simple local setup** — install Node, copy your Supabase keys, and run the game. No Docker, no Java, and no separate backend server to manage.
+
+Each school year, the instructor copies this template into a new class repository, then fills in that year's production Supabase project and repo URL. Students clone **the class repo**, not this template repo directly.
 
 ## Table of Contents
 
@@ -24,6 +26,7 @@ A classroom starter for building a **browser game** with Phaser and Supabase.
 - [Development Notes](#development-notes)
 - [CI/CD Pipeline](#cicd-pipeline)
 - [Deploying to GitHub Pages](#deploying-to-github-pages)
+- [For Instructors: Copying This Template Each Year](#for-instructors-copying-this-template-each-year)
 - [Troubleshooting](#troubleshooting)
 
 ## Features
@@ -89,16 +92,18 @@ You may be prompted to install additional software — click Install when prompt
 
 ### 2. Clone the Repository
 
+Use the **class repository** your instructor shared (a copy of this template for your year) — not necessarily the upstream `PhaserSupabaseTemplate` repo.
+
 1. Open the class repository on GitHub
 2. Click the green **Code** button and copy the URL
 3. In VS Code, choose **Clone Repository** and paste the URL
 4. Open the project folder in VS Code
 
-Or from Git Bash / Terminal:
+Or from Git Bash / Terminal (replace with your class repo URL):
 
 ```bash
-git clone https://github.com/HolyNamesAcademy/PhaserSupabaseTemplate.git
-cd PhaserSupabaseTemplate
+git clone https://github.com/HolyNamesAcademy/YOUR-CLASS-REPO.git
+cd YOUR-CLASS-REPO
 ```
 
 ### 3. Install Node Version Manager (NVM)
@@ -509,7 +514,7 @@ https://<org-or-user>.github.io/<repo-name>/
 ### Local production build check
 
 ```bash
-VITE_BASE_PATH=/your-repo-name/ npm run build
+VITE_BASE_PATH=/your-class-repo-name/ npm run build
 npm run preview
 ```
 
@@ -518,6 +523,34 @@ To preview against production data locally, temporarily point a throwaway shell 
 ```bash
 VITE_SUPABASE_URL=... VITE_SUPABASE_ANON_KEY=... npm run dev
 ```
+
+## For Instructors: Copying This Template Each Year
+
+`PhaserSupabaseTemplate` is the reusable upstream template. Each year (or each class section):
+
+1. **Create a new GitHub repo** for that class (or use GitHub Classroom / “Use this template”)
+2. **Copy this template’s contents** into that repo — students work in the class repo, not the upstream template
+3. **Create the class production Supabase project** and apply `supabase/migrations/`
+4. On the **class repo**, set GitHub Actions variables:
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_ANON_KEY`
+5. Enable **Pages → GitHub Actions**
+
+You usually do **not** need to hand-edit the Vite base path. The deploy workflow sets:
+
+```text
+VITE_BASE_PATH=/<repository-name>/
+```
+
+from the class repo’s name automatically.
+
+Students then:
+
+- Clone the **class** repo
+- Each create a **personal local-dev** Supabase project + `.env`
+- Push to the class repo; Pages uses the **class production** Supabase project
+
+When starting the next year, copy the template again (or refresh from it) into a new class repo and repeat with a new production Supabase project.
 
 ## Troubleshooting
 

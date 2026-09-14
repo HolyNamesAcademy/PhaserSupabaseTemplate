@@ -2,6 +2,10 @@
 
 Notes for AI coding tools (and humans) working in this repo.
 
+## What this repo is
+
+Reusable **classroom template**. Each year it is copied into a new class repository; that class repo gets the production Supabase keys and is what students clone. Do not assume students push directly to the upstream template.
+
 ## Stack
 
 - Phaser 3 + TypeScript + Vite for the game
@@ -11,7 +15,7 @@ Notes for AI coding tools (and humans) working in this repo.
 ## Supabase environments
 
 - **Local / development:** each student has their own Supabase project; keys go in local `.env`
-- **Production:** one shared class Supabase project; keys go in GitHub Actions variables for Pages
+- **Production:** one shared class Supabase project on the *class* GitHub repo; keys go in that repo’s GitHub Actions variables
 - Apply the same SQL migrations to both kinds of projects
 - Do not commit production keys into `.env`
 
