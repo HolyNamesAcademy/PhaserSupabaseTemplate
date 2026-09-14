@@ -99,22 +99,7 @@ git clone https://github.com/YOUR_ORG/YOUR_TEAM_REPO.git
 cd YOUR_TEAM_REPO
 ```
 
-### 3. Fix Line Endings (Windows Users Only)
-
-<details>
-<summary><strong>Windows Users - Line Endings Fix</strong></summary>
-
-To keep files on Linux-style (LF) line endings, run this in Git Bash from the project root:
-
-```bash
-find . -type f -not -path '*/\.git/*' -exec dos2unix {} +; git checkout .
-```
-
-If `dos2unix` is missing, install it or ask your instructor.
-
-</details>
-
-### 4. Install Node Version Manager (NVM)
+### 3. Install Node Version Manager (NVM)
 
 **Install NVM:**
 
@@ -138,7 +123,7 @@ Save with: `Ctrl+X`, then `Y`, then `Enter`
 
 **Open a new terminal** (Git Bash on Windows).
 
-### 5. Install Node.js
+### 4. Install Node.js
 
 <details>
 <summary><strong>School Network (with security restrictions)</strong></summary>
@@ -162,7 +147,7 @@ node -v   # should show v22.20.0
 
 </details>
 
-### 6. Install Project Dependencies
+### 5. Install Project Dependencies
 
 <details>
 <summary><strong>School Network (with security restrictions)</strong></summary>
@@ -190,11 +175,11 @@ npm install
 
 </details>
 
-### 7. Configure Supabase
+### 6. Configure Supabase
 
 Complete [Supabase Setup](#supabase-setup) and [Environment Variables](#environment-variables) before expecting the demo to succeed.
 
-### 8. Verify Your Setup
+### 7. Verify Your Setup
 
 ```bash
 node -v    # Should show v22.20.0
