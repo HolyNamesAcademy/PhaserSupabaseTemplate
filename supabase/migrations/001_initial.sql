@@ -15,6 +15,7 @@ grant select on table public.demo_messages to anon, authenticated;
 alter table public.demo_messages enable row level security;
 
 -- Anyone can read demo messages (fine for this setup check).
+drop policy if exists "Demo messages are publicly readable" on public.demo_messages;
 create policy "Demo messages are publicly readable"
   on public.demo_messages
   for select

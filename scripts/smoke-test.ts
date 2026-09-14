@@ -24,9 +24,7 @@ async function main(): Promise<void> {
     url.includes('YOUR_PROJECT') ||
     publishableKey.includes('YOUR_SUPABASE_PUBLISHABLE')
   ) {
-    fail(
-      'Set VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY (copy .env.example → .env).',
-    );
+    fail('Set VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY (copy .env.example → .env).');
   }
 
   const supabase = createClient(url, publishableKey);

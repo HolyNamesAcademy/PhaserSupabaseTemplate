@@ -480,7 +480,9 @@ Also set GitHub Actions variables on the class repo (not placeholders in files):
 - `VITE_SUPABASE_URL` — class production Project URL
 - `VITE_SUPABASE_PUBLISHABLE_KEY` — class production publishable key
 
-`VITE_BASE_PATH` is set automatically from `«CLASS_REPO_NAME»` in the deploy workflow.
+`VITE_BASE_PATH` is set automatically from the GitHub repository name in the deploy workflow (it should match `«CLASS_REPO_NAME»`).
+
+**Tip:** GitHub Pages URLs use the org’s lowercase form (e.g. `holynamesacademy.github.io`), even if the org display name has capitals.
 
 ### Each year (or section)
 

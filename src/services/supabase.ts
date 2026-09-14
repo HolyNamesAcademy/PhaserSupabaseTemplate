@@ -9,9 +9,9 @@ const supabasePublishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 export function isSupabaseConfigured(): boolean {
   return Boolean(
     supabaseUrl &&
-      supabasePublishableKey &&
-      !supabaseUrl.includes('YOUR_PROJECT_REF') &&
-      !supabasePublishableKey.includes('YOUR_SUPABASE_PUBLISHABLE'),
+    supabasePublishableKey &&
+    !supabaseUrl.includes('YOUR_PROJECT_REF') &&
+    !supabasePublishableKey.includes('YOUR_SUPABASE_PUBLISHABLE'),
   );
 }
 
