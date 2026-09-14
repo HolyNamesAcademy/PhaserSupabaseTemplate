@@ -93,26 +93,34 @@ Click Install if prompted. Leave the installer running and move on to VS Code, G
 
 ### 2. Clone the class repository
 
+**Where to put it:** keep school code under your home folder in `~/Development` (that is `/Users/yourname/Development` on a Mac). Do **not** clone into `Documents`, `Desktop`, or `Downloads` on school Macs — those often sync through **iCloud** and cause Git to show every file as changed (permissions).
+
+```bash
+mkdir -p ~/Development
+cd ~/Development
+```
+
 Use the **class repository** your instructor shared (a yearly copy of this template).
 
 1. Open the class repo on GitHub
 2. Click **Code** and copy the URL
-3. In VS Code: **Clone Repository**, paste the URL, open the folder
+3. In VS Code: **Clone Repository**, paste the URL, and choose `~/Development` as the parent folder
 
 Or in Git Bash / Terminal (replace with your class repo):
 
 ```bash
+cd ~/Development
 git clone https://github.com/«CLASS_GITHUB_ORG»/«CLASS_REPO_NAME».git
 cd «CLASS_REPO_NAME»
 ```
 
-Right after cloning, ignore file-permission noise (common on school Macs / synced folders):
+Right after cloning, ignore file-permission noise if your machine still reports mode flips:
 
 ```bash
 git config core.filemode false
 ```
 
-Clone into a normal local folder (for example `Documents` or a `Development` folder). Avoid putting the repo only inside iCloud Drive, OneDrive, or Google Drive sync folders if you can — those often flip every file’s permissions and make Git show huge fake diffs.
+Same idea for OneDrive / Google Drive: keep the repo on a normal local path like `~/Development`, not inside a cloud-only sync folder.
 
 ### 3. Install NVM
 
@@ -562,7 +570,7 @@ git status
 
 You should be back to a clean tree (or only your real edits). Then make the name / code change and commit that alone.
 
-If `git status` is still noisy, confirm the clone is not living only in iCloud/OneDrive/Google Drive, re-clone to a normal local folder, run `git config core.filemode false` again, and continue.
+If `git status` is still noisy, re-clone under `~/Development` (not `Documents` / Desktop / iCloud), run `git config core.filemode false` again, and continue.
 
 </details>
 
