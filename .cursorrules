@@ -7,6 +7,6 @@ Follow `AGENTS.md` for project conventions.
 - Keep Supabase calls in `src/services/`
 - Each student uses a personal local-dev Supabase project in `.env`
 - Class production Supabase keys go in the class repo’s GitHub Actions variables for Pages
-- Demo only checks connectivity — do not turn it into a full auth/game system unless asked
+- Demo only checks connectivity. Do not turn it into a full auth/game system unless asked
 - Never put the secret key in client code
 - Do not add React, Spring Boot, or Docker unless asked

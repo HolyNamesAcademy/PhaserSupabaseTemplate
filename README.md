@@ -1,12 +1,12 @@
 # «CLASS_SITE_TITLE»
 
-<!-- Upstream template name: PhaserSupabaseTemplate. On each class copy, set «CLASS_SITE_TITLE» (e.g. Projects II 2026–27). -->
+<!-- Upstream template name: PhaserSupabaseTemplate. On each class copy, set «CLASS_SITE_TITLE» (e.g. Projects II 2026-27). -->
 
 A classroom **template** for a browser game built with Phaser and Supabase.
 
 Install Node, add your Supabase keys, and run the game. No Docker, no Java, and no separate backend server.
 
-This GitHub repo is the reusable template. Each year the instructor copies it into a **class repository**. Students clone that class repo — not this template — and use it for the year.
+This GitHub repo is the reusable template. Each year the instructor copies it into a **class repository**. Students clone that class repo (not this template) and use it for the year.
 
 **Yearly placeholders** look like `«THIS»`. Instructors replace every `«…»` marker when creating the class copy (see [For Instructors](#for-instructors)).
 
@@ -65,7 +65,7 @@ Details are in [Initial Setup](#initial-setup).
 
 ## Initial Setup
 
-**Mac first:** if you are on a Mac, start **Xcode Command Line Tools** before anything else — the install often takes **15–20 minutes**. Kick it off, then continue with VS Code / accounts while it runs.
+**Mac first:** if you are on a Mac, start **Xcode Command Line Tools** before anything else. The install often takes **15-20 minutes**. Kick it off, then continue with VS Code / accounts while it runs.
 
 ### 1. Install required software
 
@@ -79,9 +79,9 @@ Details are in [Initial Setup](#initial-setup).
 - **Mac:** `xcode-select --install` (do this at the **start of class** on setup day)
 
 <details>
-<summary><strong>Mac — Xcode Command Line Tools</strong></summary>
+<summary><strong>Mac: Xcode Command Line Tools</strong></summary>
 
-This provides Git (and other build tools) on macOS. The download/install commonly takes **15–20 minutes**.
+This provides Git (and other build tools) on macOS. The download/install commonly takes **15-20 minutes**.
 
 ```bash
 xcode-select --install
@@ -93,7 +93,7 @@ Click Install if prompted. Leave the installer running and move on to VS Code, G
 
 ### 2. Clone the class repository
 
-**Where to put it:** keep school code under your home folder in `~/Development` (that is `/Users/yourname/Development` on a Mac). On Macs, **Documents is iCloud-synced** (Desktop often is too) — do **not** clone there. iCloud sync flips file permissions and makes Git show every file as changed.
+**Where to put it:** keep class projects in `~/Development` under your home folder (on a Mac: `/Users/yourname/Development`). On a Mac, **Documents is synced with iCloud** (Desktop often is too). Do **not** clone into an iCloud-synced folder. iCloud sync flips file permissions and makes Git show every file as changed.
 
 ```bash
 mkdir -p ~/Development
@@ -120,7 +120,7 @@ Right after cloning, ignore file-permission noise if your machine still reports 
 git config core.filemode false
 ```
 
-Same idea for OneDrive / Google Drive: keep the repo on a normal local path like `~/Development`, not inside a cloud-only sync folder.
+Same idea for OneDrive or Google Drive: keep the repo on a normal local path like `~/Development`, not inside a cloud-synced folder.
 
 ### 3. Install NVM
 
@@ -233,7 +233,7 @@ Every student creates their own Supabase project for local development.
 | Field | What to choose |
 |------|----------------|
 | **Organization** | Your personal org, unless your instructor says otherwise |
-| **GitHub (optional)** | Leave unset — migrations live in this game repo |
+| **GitHub (optional)** | Leave unset; migrations live in this game repo |
 | **Project name** | e.g. `alex-projects2-dev` (your name + `dev`) |
 | **Database password** | Click **Generate a password** and save it somewhere safe. You rarely need it here, but you cannot view it again later. |
 | **Region** | Closest to you (**Americas** is fine for most US West classrooms) |
@@ -246,7 +246,7 @@ Every student creates their own Supabase project for local development.
 | **Automatically expose new tables** | **Off** | Access stays intentional; our SQL includes the required `GRANT`s |
 | **Enable automatic RLS** | **On** | Good default for this course |
 
-5. Click **Create new project** and wait until it finishes (often 1–2 minutes)
+5. Click **Create new project** and wait until it finishes (often 1-2 minutes)
 
 ### Get your API keys
 
@@ -294,7 +294,7 @@ Restart `npm run dev` after changing `.env`.
 
 `.env` is gitignored. Production keys go in GitHub Actions variables on the class repo.
 
-Anything shipped to GitHub Pages is public. Security comes from Auth and Row Level Security later — not from hiding the publishable key.
+Anything shipped to GitHub Pages is public. Security comes from Auth and Row Level Security later, not from hiding the publishable key.
 
 ## Quick Start
 
@@ -304,13 +304,13 @@ Finish setup above first, then:
 npm run dev
 ```
 
-Open the URL Vite prints (usually http://localhost:5173). You should see **Connected — demo_messages loaded** and a hello message.
+Open the URL Vite prints (usually http://localhost:5173). You should see **Connected: demo_messages loaded** and a hello message.
 
 ## Verify Everything Works
 
 1. `npm run dev` starts without errors
 2. The Phaser canvas appears
-3. Status shows **Connected — demo_messages loaded**
+3. Status shows **Connected: demo_messages loaded**
 4. You see something like `#1  Hello from Supabase!`
 5. **Refresh** still works
 
@@ -396,7 +396,7 @@ Stop the dev server with `Ctrl+C`.
 
 ## Talking to Supabase from Code
 
-The starter migration creates `demo_messages` — only to prove connectivity.
+The starter migration creates `demo_messages` only to prove connectivity.
 
 ```typescript
 import { getDemoMessages } from '@/services/demo';
@@ -448,8 +448,8 @@ The public site must use the **class production** Supabase project, not a studen
 1. Open the class repo **Settings → Pages**
 2. Set Source to **GitHub Actions**
 3. Open **Settings → Secrets and variables → Actions → Variables** and add:
-   - `VITE_SUPABASE_URL` — production Project URL
-   - `VITE_SUPABASE_PUBLISHABLE_KEY` — production publishable key
+   - `VITE_SUPABASE_URL`: production Project URL
+   - `VITE_SUPABASE_PUBLISHABLE_KEY`: production publishable key
 4. Allow GitHub Actions to run
 
 ### What happens on push to `main`
@@ -490,15 +490,15 @@ Search the class copy for `«` and replace every marker:
 
 | Placeholder | Meaning | Example |
 |-------------|---------|---------|
-| `«CLASS_SITE_TITLE»` | Visible project title (README + `index.html`) | `Projects II 2026–27` |
+| `«CLASS_SITE_TITLE»` | Visible project title (README + `index.html`) | `Projects II 2026-27` |
 | `«CLASS_GITHUB_ORG»` | GitHub org or user that owns the class repo | `HolyNamesAcademy` |
 | `«CLASS_REPO_NAME»` | Class GitHub repository name | `Projects-II-26-27` |
 | `«CLASS_PRODUCTION_SUPABASE_NAME»` | Shared production Supabase project name | `projects2-26-27-production` |
 
 Also set GitHub Actions variables on the class repo (not placeholders in files):
 
-- `VITE_SUPABASE_URL` — class production Project URL
-- `VITE_SUPABASE_PUBLISHABLE_KEY` — class production publishable key
+- `VITE_SUPABASE_URL`: class production Project URL
+- `VITE_SUPABASE_PUBLISHABLE_KEY`: class production publishable key
 
 `VITE_BASE_PATH` is set automatically from the GitHub repository name in the deploy workflow (it should match `«CLASS_REPO_NAME»`).
 
@@ -512,9 +512,9 @@ Also set GitHub Actions variables on the class repo (not placeholders in files):
 4. Set Actions variables `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` on the **class** repo
 5. Enable Pages → GitHub Actions
 
-**Setup-day tip (Macs):** on the class period when students first set up their machines, have everyone run `xcode-select --install` in the **first few minutes**. Command Line Tools often take **15–20 minutes**; starting late blocks cloning and Node install for the rest of the period.
+**Setup-day tip (Macs):** on the class period when students first set up their machines, have everyone run `xcode-select --install` in the **first few minutes**. Command Line Tools often take **15-20 minutes**; starting late blocks cloning and Node install for the rest of the period.
 
-CI and deploy workflows are **skipped on this upstream template** (`HolyNamesAcademy/PhaserSupabaseTemplate`). They run automatically on class copies under a different repo name — no workflow edits required.
+CI and deploy workflows are **skipped on this upstream template** (`HolyNamesAcademy/PhaserSupabaseTemplate`). They run automatically on class copies under a different repo name. No workflow edits required.
 
 Students then clone `https://github.com/«CLASS_GITHUB_ORG»/«CLASS_REPO_NAME».git`, each create a personal local-dev Supabase project + `.env`, and push to the class repo. Pages uses the class production project.
 
@@ -558,7 +558,7 @@ git remote add class git@github.com:«CLASS_GITHUB_ORG»/«CLASS_REPO_NAME».git
 <details>
 <summary><strong>Git says every file changed (permissions / mode only)</strong></summary>
 
-Do **not** commit that. It is almost never a real project change — Git is seeing file modes flip (for example `644` → `755`) after VS Code or a cloud-sync folder touches the tree.
+Do **not** commit that. It is almost never a real project change. Git is seeing file modes flip (for example `644` to `755`) after VS Code or a cloud-sync folder touches the tree.
 
 In the repo folder:
 
@@ -570,7 +570,7 @@ git status
 
 You should be back to a clean tree (or only your real edits). Then make the name / code change and commit that alone.
 
-If `git status` is still noisy, re-clone under `~/Development` (not Mac `Documents` / Desktop — those are iCloud-synced), run `git config core.filemode false` again, and continue.
+If `git status` is still noisy, re-clone under `~/Development` (not Mac `Documents` or Desktop, which are iCloud-synced), run `git config core.filemode false` again, and continue.
 
 </details>
 
@@ -674,4 +674,4 @@ Stop the other process, or use the alternate URL Vite prints.
 1. Re-check setup, local Supabase, and `.env`
 2. Run `npm run smoke` and read the error
 3. Check the browser console
-4. Ask your instructor or a classmate — include what you tried and the exact error text
+4. Ask your instructor or a classmate. Include what you tried and the exact error text

@@ -77,7 +77,7 @@ export class DemoScene extends Phaser.Scene {
     try {
       const rows = await getDemoMessages();
       this.statusText.setColor('#7dcea0');
-      this.statusText.setText('Connected — demo_messages loaded');
+      this.statusText.setText('Connected: demo_messages loaded');
 
       if (rows.length === 0) {
         this.bodyText.setText('Table is empty. Re-run 001_initial.sql (it seeds one hello row).');

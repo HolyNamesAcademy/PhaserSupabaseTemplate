@@ -36,11 +36,11 @@ async function main(): Promise<void> {
     .order('id', { ascending: true });
 
   if (error) {
-    fail(`${error.message} — did you run supabase/migrations/001_initial.sql?`);
+    fail(`${error.message}. Did you run supabase/migrations/001_initial.sql?`);
   }
 
   if (!data || data.length === 0) {
-    fail('demo_messages is empty — re-run the migration (it seeds a hello row).');
+    fail('demo_messages is empty. Re-run the migration (it seeds a hello row).');
   }
 
   ok(`loaded ${data.length} row(s)`);

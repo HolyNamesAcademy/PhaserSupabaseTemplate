@@ -2,7 +2,7 @@
   "name": "phaser-supabase-template",
   "version": "1.0.0",
   "private": true,
-  "description": "PhaserSupabaseTemplate — Phaser 3 + TypeScript + Vite + Supabase classroom starter, deployable to GitHub Pages.",
+  "description": "PhaserSupabaseTemplate: Phaser 3 + TypeScript + Vite + Supabase classroom starter, deployable to GitHub Pages.",
   "type": "module",
   "scripts": {
     "dev": "vite",
