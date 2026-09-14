@@ -221,21 +221,50 @@ Do **not** put your personal local-dev keys into GitHub Actions. Do **not** put 
 
 Every student should create **their own** Supabase project for local development.
 
-1. Go to [https://supabase.com/](https://supabase.com/) and create a new project  
-   Tip: name it something like `yourname-teamname-dev`
-2. Wait until the project finishes provisioning
-3. Open **Project Settings → API**
-4. Copy:
+### Create the project
+
+1. Go to [https://supabase.com/](https://supabase.com/) and sign in
+2. Open (or create) your organization, then click **New project**
+3. Fill in the **Create a new project** form:
+
+| Field | What to choose |
+|------|----------------|
+| **Organization** | Your personal org (or the school/class org if your instructor told you to use one) |
+| **GitHub (optional)** | Leave unset for this class — we keep SQL migrations in *this* game repo |
+| **Project name** | Something clear, e.g. `alex-team3-dev` (include your name + `dev`) |
+| **Database password** | Click **Generate a password**, then **save it somewhere safe** (password manager or notes). You rarely need it for this template, but you cannot see it again later. |
+| **Region** | Pick the region closest to you (for US West classrooms, **Americas** is usually fine) |
+
+4. Under **Security**, use these settings for class:
+
+| Setting | Choose | Why |
+|--------|--------|-----|
+| **Enable Data API** | **On** | Required so the Phaser app can talk to Supabase with `supabase-js` |
+| **Automatically expose new tables** | **Off** (recommended) | Keeps API access intentional; your SQL migrations define what is allowed |
+| **Enable automatic RLS** | **On** | Turns on Row Level Security for new tables (good default for this course) |
+
+5. Click **Create new project**
+6. Wait until provisioning finishes (often a minute or two)
+
+### Get your API keys
+
+1. In the project dashboard, open **Project Settings → API**
+2. Copy:
    - **Project URL** (looks like `https://xxxxx.supabase.co`)
    - **anon public** key  
-     Never copy the **service_role** key into this app
-5. Open **SQL Editor → New query**
-6. Paste the full contents of `supabase/migrations/001_initial.sql`
-7. Click **Run**
+     Never copy the **service_role** / secret key into this app or into `.env`
+
+### Apply the starter migration
+
+1. Open **SQL Editor → New query**
+2. Paste the full contents of `supabase/migrations/001_initial.sql`
+3. Click **Run**
 
 That creates a small `demo_messages` table and adds one hello row so you can confirm the connection.
 
-Later, when the team is ready to deploy, create (or reuse) the **team production** project and apply the same migration there. See [Deploying to GitHub Pages](#deploying-to-github-pages).
+Then continue with [Environment Variables](#environment-variables).
+
+Later, when the team is ready to deploy, create the **team production** project with the same form settings (name it something like `team3-production`), apply the same migration there, and wire it into GitHub Actions. See [Deploying to GitHub Pages](#deploying-to-github-pages).
 
 ## Environment Variables
 
@@ -445,9 +474,11 @@ The public site must use the **team production** Supabase project — not any st
 
 ### One-time: create the production Supabase project
 
-1. Create one shared Supabase project for the team (name it something like `teamname-production`)
-2. Run every migration in `supabase/migrations/` in that project's SQL Editor (same files you use locally)
-3. Copy that project's **Project URL** and **anon public** key
+1. Create one shared Supabase project for the team (same form as [Create the project](#create-the-project) above)
+2. Name it something like `teamname-production` (not a personal `dev` name)
+3. Use the same Security settings: **Data API on**, **Automatically expose new tables off**, **automatic RLS on**
+4. Run every migration in `supabase/migrations/` in that project's SQL Editor
+5. Copy that project's **Project URL** and **anon public** key
 
 ### One-time: repository settings
 
