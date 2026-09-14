@@ -1,11 +1,8 @@
-/**
- * End-to-end smoke test for the connectivity demo.
- * Requires a running Supabase project (.env with URL + anon key)
- * and the 001_initial.sql migration applied.
- *
- * Usage:
- *   npm run smoke
- */
+// Quick check that Supabase is reachable and demo_messages exists.
+// Needs a filled-in .env and the SQL migration already applied.
+//
+//   npm run smoke
+
 import { createClient } from '@supabase/supabase-js';
 
 const url = process.env.VITE_SUPABASE_URL;

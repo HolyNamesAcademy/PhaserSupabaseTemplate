@@ -1,8 +1,6 @@
 import Phaser from 'phaser';
 
-/**
- * Tiny boot scene — then hand off to the Supabase connectivity demo.
- */
+// First scene that runs. Starts the demo scene after a short pause.
 export class BootScene extends Phaser.Scene {
   constructor() {
     super('BootScene');

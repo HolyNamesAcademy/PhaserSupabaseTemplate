@@ -1,11 +1,8 @@
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 
-/**
- * Browser-safe Supabase client.
- *
- * Only the anon/public key belongs here. Never put the service_role key
- * in Vite env vars or client code — that key bypasses Row Level Security.
- */
+// Creates the Supabase client using the public project URL and anon key.
+// Never put the service_role key in this file or in VITE_ environment variables.
+
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
@@ -20,8 +17,7 @@ export function isSupabaseConfigured(): boolean {
 
 function createSupabaseClient(): SupabaseClient {
   if (!isSupabaseConfigured()) {
-    // Placeholders so imports never crash before .env is set up.
-    // Real calls will fail clearly until the project is configured.
+    // Dummy client so the app can still load before .env is filled in.
     return createClient('https://example.supabase.co', 'public-anon-key');
   }
 

@@ -2,12 +2,7 @@ import Phaser from 'phaser';
 import { getDemoMessages } from '../../services/demo';
 import { isSupabaseConfigured } from '../../services/supabase';
 
-/**
- * Connectivity demo — the Phaser equivalent of SpringReactTemplate's /api-demo.
- *
- * It only proves: Phaser → service layer → Supabase → Postgres → back.
- * Auth, accounts, scores, and real game saves are left for students to build.
- */
+// Simple screen that loads a row from Supabase to confirm setup works.
 export class DemoScene extends Phaser.Scene {
   private statusText!: Phaser.GameObjects.Text;
   private bodyText!: Phaser.GameObjects.Text;

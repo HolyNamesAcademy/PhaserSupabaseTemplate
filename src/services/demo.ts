@@ -1,12 +1,7 @@
 import { isSupabaseConfigured, supabase } from './supabase';
 
-/**
- * Thin service helpers for the connectivity demo.
- *
- * Scenes should call these functions rather than building Supabase queries
- * inline. When you add Auth, scores, saves, etc., put those helpers in new
- * files next to this one (for example auth.ts, gameData.ts).
- */
+// Helpers for talking to Supabase.
+// Keep database calls here (or in new files next to this one), not inside Phaser scenes.
 
 export type DemoMessage = {
   id: number;
@@ -22,7 +17,7 @@ function requireConfigured(): void {
   }
 }
 
-/** Read rows from the stub demo_messages table. */
+// Reads all rows from the demo_messages table.
 export async function getDemoMessages(): Promise<DemoMessage[]> {
   requireConfigured();
 

@@ -1,40 +1,25 @@
-# AGENTS.md — Projects II Game Template
+# Projects II Game Template
 
-Guidance for AI coding assistants working in this repository.
+Notes for AI coding tools (and humans) working in this repo.
 
-## What this project is
+## Stack
 
-Classroom **starter** for Holy Names Academy Projects II: Phaser 3 + TypeScript + Vite + Supabase, deployed to GitHub Pages.
+- Phaser 3 + TypeScript + Vite for the game
+- Supabase for backend data
+- GitHub Pages for hosting
 
-The included demo is intentionally **thin**. It only proves:
+## Layout
 
-```text
-Phaser → src/services → Supabase → Postgres → back to Phaser
-```
+- Scenes: `src/game/scenes/`
+- Game config: `src/game/config.ts`
+- Assets: `public/assets/`
+- Supabase client: `src/services/supabase.ts`
+- Database helpers: `src/services/` (start with `demo.ts`)
+- SQL: `supabase/migrations/`
 
-It does **not** implement authentication, user accounts, owned data, scores, or a real game. Students build those.
+Put Supabase calls in `src/services/`, not in Phaser scenes.
 
-## Architecture
-
-- Phaser owns the game / UI
-- Supabase access belongs in `src/services/`
-- Schema lives in `supabase/migrations/`
-- No React, Spring Boot, Docker, or separate application server
-
-## Where things live
-
-| Concern | Location |
-|--------|----------|
-| Scenes | `src/game/scenes/` |
-| Game config | `src/game/config.ts` |
-| Assets | `public/assets/` |
-| Supabase client | `src/services/supabase.ts` |
-| Demo connectivity helpers | `src/services/demo.ts` |
-| SQL migrations | `supabase/migrations/` |
-
-When students add Auth or game persistence, create new service files (for example `auth.ts`, `gameData.ts`) rather than scattering Supabase calls through scenes.
-
-## Development commands
+## Commands
 
 ```bash
 npm install
@@ -42,19 +27,14 @@ npm run dev
 npm run build
 npm run lint
 npm run format
-npm run smoke   # needs .env + migration applied
+npm run smoke
 ```
 
-Node version is pinned in `.nvmrc`.
+Node version is in `.nvmrc`.
 
-## Security rules
+## Important
 
-1. Never add the Supabase `service_role` key to client code or `VITE_*` env vars.
-2. Only the anon/public key belongs in the browser.
-3. Do not implement a full auth/product stack in this template — keep the starter thin.
-4. Do not introduce React, Next.js, Spring Boot, or Docker unless explicitly requested.
-5. Keep changes understandable for high-school students.
-
-## Demo purpose
-
-`DemoScene` + `demo_messages` exist only so a student can verify their computer and Supabase project are configured. Delete or replace them once the real game starts.
+- Only use the public anon key in the browser / `VITE_*` variables
+- Never add the service_role key to client code
+- The included demo only checks that Supabase is connected — leave auth and game data for the team to build
+- Do not add React, Spring Boot, or Docker unless asked

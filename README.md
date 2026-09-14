@@ -36,14 +36,12 @@ This template gives your team:
 
 - A Phaser + Vite + TypeScript game project
 - A Supabase client wired through a small service layer
-- A **tiny connectivity demo** (like the old SpringReactTemplate `/api-demo`)
+- A small demo that checks your Supabase connection
 - CI + GitHub Pages deployment
 
-It does **not** ship a finished game, login system, or player accounts.
+It does **not** include a finished game, login system, or player accounts.
 
-The demo only answers: “Can Phaser talk to my Supabase project?”
-
-Once that works, you delete/replace the demo and build your game — including Auth and real tables.
+Once the demo shows a message from Supabase, replace it and build your game — including Auth and real tables.
 
 Each **team** should use:
 
@@ -190,7 +188,7 @@ project/
 
 ## What You Will Build Next
 
-The template stops at connectivity on purpose. Your team still needs to design and implement things like:
+Your team will still need to add things like:
 
 - Authentication (register / sign in / sign out)
 - Profiles and ownership
@@ -198,7 +196,7 @@ The template stops at connectivity on purpose. Your team still needs to design a
 - Row Level Security policies for private data
 - Your actual Phaser game
 
-Keep Supabase access in the service layer (`src/services/`), the same way the old SpringReactTemplate kept API calls in `src/lib/api.ts`.
+Keep Supabase calls in `src/services/` instead of putting them directly in scenes.
 
 ## Database and Migrations
 
@@ -208,7 +206,7 @@ Schema must live in git — not only in the Supabase dashboard.
 - Apply on a new project by pasting into the Supabase SQL Editor
 - Replace the demo table when your real schema is ready
 
-The starter enables public **read** on `demo_messages` so setup works before Auth exists. When you store private player data, you will add Auth and stricter RLS policies.
+`demo_messages` is publicly readable so setup works before you add Auth. Private player data should use Auth and stricter RLS policies later.
 
 ## Deploying to GitHub Pages
 

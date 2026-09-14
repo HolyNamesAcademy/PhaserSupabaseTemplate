@@ -1,10 +1,8 @@
 import { defineConfig } from 'vite';
 import path from 'node:path';
 
-/**
- * GitHub Pages serves project sites from /<repo-name>/.
- * Locally we use "/". CI sets VITE_BASE_PATH to "/<repo>/" when deploying.
- */
+// GitHub Pages hosts the site at /repo-name/, so CI sets VITE_BASE_PATH.
+// Locally we leave it as "/".
 const base = process.env.VITE_BASE_PATH || '/';
 
 export default defineConfig({
