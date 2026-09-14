@@ -20,8 +20,8 @@ export function isSupabaseConfigured(): boolean {
 
 function createSupabaseClient(): SupabaseClient {
   if (!isSupabaseConfigured()) {
-    // Create a client with placeholders so imports never crash before setup.
-    // Auth/data calls will fail clearly until .env is configured.
+    // Placeholders so imports never crash before .env is set up.
+    // Real calls will fail clearly until the project is configured.
     return createClient('https://example.supabase.co', 'public-anon-key');
   }
 

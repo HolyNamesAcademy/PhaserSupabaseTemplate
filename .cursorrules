@@ -1,11 +1,11 @@
 # Projects II Game Template — Cursor Rules
 
-Follow `AGENTS.md` in the repository root. That file is the source of truth for architecture, security, and classroom conventions.
+Follow `AGENTS.md` in the repository root. That file is the source of truth.
 
 Quick reminders:
 
-- Phaser + TypeScript + Vite frontend; Supabase for auth and Postgres
+- Phaser + TypeScript + Vite; Supabase for backend data
 - Put Supabase calls in `src/services/`, not inside scenes
+- The starter demo only proves connectivity — do not expand it into auth/accounts/game saves unless the user asks
 - Never add privileged Supabase keys to client code
 - Do not introduce React, Spring Boot, or Docker unless explicitly requested
-- Keep the demo small; students own the real game
