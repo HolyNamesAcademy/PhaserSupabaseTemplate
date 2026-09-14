@@ -11,7 +11,7 @@ Notes for AI coding tools (and humans) working in this repo.
 ## Supabase environments
 
 - **Local / development:** each student has their own Supabase project; keys go in local `.env`
-- **Production:** one shared team Supabase project; keys go in GitHub Actions variables for Pages
+- **Production:** one shared class Supabase project; keys go in GitHub Actions variables for Pages
 - Apply the same SQL migrations to both kinds of projects
 - Do not commit production keys into `.env`
 
@@ -43,5 +43,5 @@ Node version is in `.nvmrc`.
 
 - Only use the public anon key in the browser / `VITE_*` variables
 - Never add the service_role key to client code
-- The included demo only checks that Supabase is connected — leave auth and game data for the team to build
+- The included demo only checks that Supabase is connected — leave auth and game data for the class to build
 - Do not add React, Spring Boot, or Docker unless asked

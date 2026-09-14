@@ -35,7 +35,7 @@ jobs:
         env:
           # Project sites are served from /<repo-name>/
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
-          # Team PRODUCTION Supabase project (not student local-dev keys)
+          # Class PRODUCTION Supabase project (not student local-dev keys)
           VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
 

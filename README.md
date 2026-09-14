@@ -30,7 +30,7 @@ A classroom starter for building a **browser game** with Phaser and Supabase.
 
 - **Phaser 3 game project** — TypeScript + Vite with hot reload
 - **Supabase connection demo** — a small screen that proves your project can read from the database
-- **Separate local and production Supabase projects** — each student develops against their own project; GitHub Pages uses the team's shared production project
+- **Separate local and production Supabase projects** — each student develops against their own project; GitHub Pages uses the class shared production project
 - **Service layer** — keep Supabase calls in `src/services/` instead of inside scenes
 - **SQL migrations in git** — starter schema lives in `supabase/migrations/`
 - **GitHub Pages deploy** — push to `main` and GitHub Actions publishes the game
@@ -89,7 +89,7 @@ You may be prompted to install additional software — click Install when prompt
 
 ### 2. Clone the Repository
 
-1. Open your team repository on GitHub
+1. Open the class repository on GitHub
 2. Click the green **Code** button and copy the URL
 3. In VS Code, choose **Clone Repository** and paste the URL
 4. Open the project folder in VS Code
@@ -97,8 +97,8 @@ You may be prompted to install additional software — click Install when prompt
 Or from Git Bash / Terminal:
 
 ```bash
-git clone https://github.com/YOUR_ORG/YOUR_TEAM_REPO.git
-cd YOUR_TEAM_REPO
+git clone https://github.com/HolyNamesAcademy/PhaserSupabaseTemplate.git
+cd PhaserSupabaseTemplate
 ```
 
 ### 3. Install Node Version Manager (NVM)
@@ -198,20 +198,20 @@ This course uses **two kinds of Supabase projects**:
 | Project | Who creates it | Used by | Credentials live in |
 |---------|----------------|---------|---------------------|
 | **Local / development** | **Each student** (their own project) | `npm run dev` on their computer | Local `.env` (never committed) |
-| **Production** | **The team** (one shared project) | The game on GitHub Pages | GitHub Actions **variables** on the team repo |
+| **Production** | **The class** (one shared project) | The game on GitHub Pages | GitHub Actions **variables** on the class repo |
 
 ```text
-Student laptop                    Team GitHub Pages site
+Student laptop                    Class GitHub Pages site
 ──────────────                    ─────────────────────
-.env  →  your Supabase project    Actions vars  →  team production project
+.env  →  your Supabase project    Actions vars  →  class production project
 npm run dev                       push to main  →  deployed build
 ```
 
 Why split them?
 
 - You can break or reset **your** database while developing without wiping the public site
-- Teammates do not share one fragile database during daily work
-- The live GitHub Pages game talks to one stable production project
+- Students do not share one fragile database during daily work
+- The live GitHub Pages game talks to one stable class production project
 
 **Important:** apply the same SQL migrations to **both** projects when the schema changes. Git is the source of truth for schema (`supabase/migrations/`).
 
@@ -231,7 +231,7 @@ Every student should create **their own** Supabase project for local development
 |------|----------------|
 | **Organization** | Your personal org (or the school/class org if your instructor told you to use one) |
 | **GitHub (optional)** | Leave unset for this class — we keep SQL migrations in *this* game repo |
-| **Project name** | Something clear, e.g. `alex-team3-dev` (include your name + `dev`) |
+| **Project name** | Something clear, e.g. `alex-projects2-dev` (include your name + `dev`) |
 | **Database password** | Click **Generate a password**, then **save it somewhere safe** (password manager or notes). You rarely need it for this template, but you cannot see it again later. |
 | **Region** | Pick the region closest to you (for US West classrooms, **Americas** is usually fine) |
 
@@ -264,7 +264,7 @@ That creates a small `demo_messages` table and adds one hello row so you can con
 
 Then continue with [Environment Variables](#environment-variables).
 
-Later, when the team is ready to deploy, create the **team production** project with the same form settings (name it something like `team3-production`), apply the same migration there, and wire it into GitHub Actions. See [Deploying to GitHub Pages](#deploying-to-github-pages).
+Later, when the class is ready to deploy, create the **class production** project with the same form settings (name it something like `projects2-production`), apply the same migration there, and wire it into GitHub Actions. See [Deploying to GitHub Pages](#deploying-to-github-pages).
 
 ## Environment Variables
 
@@ -315,7 +315,7 @@ npm run dev
 |---------|-----|-------------|
 | **Game (local)** | http://localhost:5173 | Phaser app + connectivity demo |
 | **Your local Supabase** | https://supabase.com/dashboard | The project in your local `.env` |
-| **Team production Supabase** | https://supabase.com/dashboard | Shared project used by GitHub Pages |
+| **Class production Supabase** | https://supabase.com/dashboard | Shared project used by GitHub Pages |
 | **GitHub Pages** | `https://<org-or-user>.github.io/<repo-name>/` | Public deployed game (after setup) |
 
 ## Development Commands
@@ -346,7 +346,7 @@ npm run dev
 - Edit scenes in `src/game/scenes/`
 - Put Supabase calls in `src/services/`
 - Save and let Vite hot-reload the browser
-- When the database schema changes, add SQL under `supabase/migrations/`, run it on **your local-dev** project, and make sure the team also applies it to the **production** project before (or when) you deploy
+- When the database schema changes, add SQL under `supabase/migrations/`, run it on **your local-dev** project, and make sure it is also applied to the **class production** project before (or when) you deploy
 
 ### Checking Quality Before You Push
 
@@ -432,7 +432,7 @@ When you add Auth, scores, saves, and so on, create new files next to `demo.ts`,
 
 ## What You Will Build Next
 
-This template stops at a connection check on purpose. Your team will still need to add:
+This template stops at a connection check on purpose. The class will still need to add:
 
 - Authentication (register / sign in / sign out)
 - Profiles and ownership
@@ -446,7 +446,7 @@ Database schema should live in git — not only in the Supabase dashboard.
 
 - Starter file: `supabase/migrations/001_initial.sql`
 - Apply it by pasting into the Supabase **SQL Editor** (simplest on student Windows machines)
-- Run new migrations on **each student's local-dev project** and on the **team production project**
+- Run new migrations on **each student's local-dev project** and on the **class production project**
 - Replace the demo table when your real game schema is ready
 
 `demo_messages` is publicly readable so setup works before you add Auth. Private player data should use Auth and stricter RLS policies later.
@@ -456,7 +456,7 @@ Database schema should live in git — not only in the Supabase dashboard.
 - **Hot reload:** Vite refreshes the browser when you save TypeScript/CSS files
 - **Env vars:** Only variables starting with `VITE_` are available in the browser
 - **Local `.env`:** points at your personal development Supabase project
-- **GitHub Actions variables:** point the deployed site at the team production Supabase project
+- **GitHub Actions variables:** point the deployed site at the class production Supabase project
 - **Restart after `.env` changes:** Stop and re-run `npm run dev`
 - **Service layer:** Keep Supabase access in `src/services/`
 - **No Docker / Java required:** Supabase hosts the database for you
@@ -470,12 +470,12 @@ The `.github/workflows/` folder contains GitHub Actions that run on pushes and p
 
 ## Deploying to GitHub Pages
 
-The public site must use the **team production** Supabase project — not any student's local-dev project.
+The public site must use the **class production** Supabase project — not any student's local-dev project.
 
 ### One-time: create the production Supabase project
 
-1. Create one shared Supabase project for the team (same form as [Create the project](#create-the-project) above)
-2. Name it something like `teamname-production` (not a personal `dev` name)
+1. Create one shared Supabase project for the class (same form as [Create the project](#create-the-project) above)
+2. Name it something like `projects2-production` (not a personal `dev` name)
 3. Use the same Security settings: **Data API on**, **Automatically expose new tables off**, **automatic RLS on**
 4. Run every migration in `supabase/migrations/` in that project's SQL Editor
 5. Copy that project's **Project URL** and **anon public** key
@@ -528,7 +528,7 @@ VITE_SUPABASE_URL=... VITE_SUPABASE_ANON_KEY=... npm run dev
 
 - Local `.env` is your **dev** project; Pages uses the **production** project from Actions variables
 - Confirm production has the same migrations applied
-- Confirm Actions variables are the production URL and anon key (not a classmate's local project)
+- Confirm Actions variables are the class production URL and anon key (not a student's local-dev project)
 
 </details>
 
@@ -615,4 +615,4 @@ If you're still stuck:
 1. Re-check [Initial Setup](#initial-setup), [Supabase Setup (Local Dev)](#supabase-setup-local-dev), and [Environment Variables](#environment-variables)
 2. Run `npm run smoke` and read the error text
 3. Look at the browser console for errors
-4. Ask your instructor or teammates — include what you tried and the exact error message
+4. Ask your instructor or classmates — include what you tried and the exact error message
