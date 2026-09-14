@@ -4,7 +4,7 @@ Notes for AI coding tools (and humans) working in this repo.
 
 ## What this repo is
 
-Reusable **classroom template**. Each year it is copied into a new class repository; that class repo gets the production Supabase keys and is what students clone. Do not assume students push directly to the upstream template.
+Reusable **classroom template**. Each year it is copied into a new class repository; replace every `«…»` placeholder (see README → For Instructors), set production Supabase Actions variables, and have students clone that class repo — not the upstream template.
 
 ## Stack
 

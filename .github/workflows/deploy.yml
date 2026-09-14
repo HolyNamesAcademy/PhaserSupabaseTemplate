@@ -33,7 +33,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          # Project sites are served from /<repo-name>/
+          # Class sites are served from /«CLASS_REPO_NAME»/ (set automatically from the repo name)
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
           # Class PRODUCTION Supabase project (not student local-dev keys)
           VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
