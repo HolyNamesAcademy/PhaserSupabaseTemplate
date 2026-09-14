@@ -106,6 +106,14 @@ git clone https://github.com/«CLASS_GITHUB_ORG»/«CLASS_REPO_NAME».git
 cd «CLASS_REPO_NAME»
 ```
 
+Right after cloning, ignore file-permission noise (common on school Macs / synced folders):
+
+```bash
+git config core.filemode false
+```
+
+Clone into a normal local folder (for example `Documents` or a `Development` folder). Avoid putting the repo only inside iCloud Drive, OneDrive, or Google Drive sync folders if you can — those often flip every file’s permissions and make Git show huge fake diffs.
+
 ### 3. Install NVM
 
 ```bash
@@ -538,6 +546,25 @@ git remote add class git@github.com:«CLASS_GITHUB_ORG»/«CLASS_REPO_NAME».git
 
 
 ## Troubleshooting
+
+<details>
+<summary><strong>Git says every file changed (permissions / mode only)</strong></summary>
+
+Do **not** commit that. It is almost never a real project change — Git is seeing file modes flip (for example `644` → `755`) after VS Code or a cloud-sync folder touches the tree.
+
+In the repo folder:
+
+```bash
+git config core.filemode false
+git restore .
+git status
+```
+
+You should be back to a clean tree (or only your real edits). Then make the name / code change and commit that alone.
+
+If `git status` is still noisy, confirm the clone is not living only in iCloud/OneDrive/Google Drive, re-clone to a normal local folder, run `git config core.filemode false` again, and continue.
+
+</details>
 
 <details>
 <summary><strong>Local works but GitHub Pages shows wrong or empty data</strong></summary>
