@@ -6,8 +6,10 @@ on:
   pull_request:
     branches: [main]
 
+# Skip on the upstream template repo. Class copies run normally.
 jobs:
   build:
+    if: github.repository != 'HolyNamesAcademy/PhaserSupabaseTemplate'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -32,6 +34,6 @@ jobs:
         run: npm run build
         env:
           # Placeholder public values so CI can typecheck/build without a real project.
-          # Deploy workflow injects real VITE_* secrets/vars for GitHub Pages.
+          # Deploy workflow injects real VITE_* vars for GitHub Pages.
           VITE_SUPABASE_URL: https://example.supabase.co
           VITE_SUPABASE_PUBLISHABLE_KEY: public-publishable-key-for-ci-build-only

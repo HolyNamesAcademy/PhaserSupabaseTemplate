@@ -14,8 +14,10 @@ concurrency:
   group: pages
   cancel-in-progress: true
 
+# Skip on the upstream template repo. Class copies run normally.
 jobs:
   build:
+    if: github.repository != 'HolyNamesAcademy/PhaserSupabaseTemplate'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -45,6 +47,7 @@ jobs:
           path: dist
 
   deploy:
+    if: github.repository != 'HolyNamesAcademy/PhaserSupabaseTemplate'
     needs: build
     runs-on: ubuntu-latest
     environment:

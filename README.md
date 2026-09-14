@@ -492,6 +492,8 @@ Also set GitHub Actions variables on the class repo (not placeholders in files):
 4. Set Actions variables `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` on the **class** repo
 5. Enable Pages → GitHub Actions
 
+CI and deploy workflows are **skipped on this upstream template** (`HolyNamesAcademy/PhaserSupabaseTemplate`). They run automatically on class copies under a different repo name — no workflow edits required.
+
 Students then clone `https://github.com/«CLASS_GITHUB_ORG»/«CLASS_REPO_NAME».git`, each create a personal local-dev Supabase project + `.env`, and push to the class repo. Pages uses the class production project.
 
 Start the next year with a fresh class repo (and usually a fresh production Supabase project) copied from this template again.
