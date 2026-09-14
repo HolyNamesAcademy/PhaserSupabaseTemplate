@@ -245,7 +245,7 @@ Every student should create **their own** Supabase project for local development
 | Setting | Choose | Why |
 |--------|--------|-----|
 | **Enable Data API** | **On** | Required so the Phaser app can talk to Supabase with `supabase-js` |
-| **Automatically expose new tables** | **Off** (recommended) | Keeps API access intentional; your SQL migrations define what is allowed |
+| **Automatically expose new tables** | **Off** (recommended) | Keeps API access intentional; our SQL migrations include the needed `GRANT`s |
 | **Enable automatic RLS** | **On** | Turns on Row Level Security for new tables (good default for this course) |
 
 5. Click **Create new project**
@@ -572,6 +572,28 @@ When starting the next year, copy the template again (or refresh from it) into a
 - Confirm values are real, not still `YOUR_…` placeholders
 - Restart `npm run dev` after editing `.env`
 - Variable names must start with `VITE_`
+
+</details>
+
+<details>
+<summary><strong>Request failed / permission denied for table</strong></summary>
+
+If you created the table but the app still fails, you may be missing table privileges (common when **Automatically expose new tables** is off).
+
+In the SQL Editor, run:
+
+```sql
+grant usage on schema public to anon, authenticated;
+grant select on table public.demo_messages to anon, authenticated;
+```
+
+Or re-run the full updated `supabase/migrations/001_initial.sql`.
+
+Also confirm:
+
+- `.env` uses `VITE_SUPABASE_PUBLISHABLE_KEY` (not the old anon name)
+- you restarted `npm run dev` after editing `.env`
+- the Project URL and publishable key are from the same project
 
 </details>
 

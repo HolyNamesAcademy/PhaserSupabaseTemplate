@@ -8,6 +8,10 @@ create table if not exists public.demo_messages (
   created_at timestamptz not null default now()
 );
 
+-- Needed when "Automatically expose new tables" is off in project settings.
+grant usage on schema public to anon, authenticated;
+grant select on table public.demo_messages to anon, authenticated;
+
 alter table public.demo_messages enable row level security;
 
 -- Anyone can read demo messages (fine for this setup check).
