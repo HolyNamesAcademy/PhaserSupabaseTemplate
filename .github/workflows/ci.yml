@@ -34,4 +34,4 @@ jobs:
           # Placeholder public values so CI can typecheck/build without a real project.
           # Deploy workflow injects real VITE_* secrets/vars for GitHub Pages.
           VITE_SUPABASE_URL: https://example.supabase.co
-          VITE_SUPABASE_ANON_KEY: public-anon-key-for-ci-build-only
+          VITE_SUPABASE_PUBLISHABLE_KEY: public-publishable-key-for-ci-build-only

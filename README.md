@@ -256,8 +256,8 @@ Every student should create **their own** Supabase project for local development
 1. In the project dashboard, open **Project Settings → API**
 2. Copy:
    - **Project URL** (looks like `https://xxxxx.supabase.co`)
-   - **anon public** key  
-     Never copy the **service_role** / secret key into this app or into `.env`
+   - **Publishable** key (`sb_publishable_…`, sometimes still labeled alongside the legacy anon key)  
+     Never copy the **secret** key (`sb_secret_…` / legacy `service_role`) into this app or into `.env`
 
 ### Apply the starter migration
 
@@ -281,11 +281,11 @@ Later, when the class is ready to deploy, create the **class production** projec
 cp .env.example .env
 ```
 
-2. Edit `.env` and paste the URL and anon key from **your** local-dev project:
+2. Edit `.env` and paste the URL and **publishable** key from **your** local-dev project:
 
 ```bash
 VITE_SUPABASE_URL=https://YOUR_PROJECT_REF.supabase.co
-VITE_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_PUBLIC_KEY
+VITE_SUPABASE_PUBLISHABLE_KEY=YOUR_SUPABASE_PUBLISHABLE_KEY
 ```
 
 3. Save the file and restart `npm run dev` if it was already running.
@@ -293,12 +293,12 @@ VITE_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_PUBLIC_KEY
 | Value | Safe in the browser? | Notes |
 |------|----------------------|-------|
 | `VITE_SUPABASE_URL` | Yes | Public project URL |
-| `VITE_SUPABASE_ANON_KEY` | Yes | Public client key |
-| `service_role` key | **No** | Never commit or put in Vite / GitHub Pages |
+| `VITE_SUPABASE_PUBLISHABLE_KEY` | Yes | Public client key (`sb_publishable_…`) |
+| Secret key (`sb_secret_…`) | **No** | Never commit or put in Vite / GitHub Pages |
 
-`.env` is gitignored. The **production** URL and anon key belong in GitHub Actions variables, not in `.env` that you commit.
+`.env` is gitignored. The **production** URL and publishable key belong in GitHub Actions variables, not in `.env` that you commit.
 
-GitHub Pages is a static site. Anything bundled into the client is public. Real security comes from Auth and Row Level Security later — not from hiding the anon key.
+GitHub Pages is a static site. Anything bundled into the client is public. Real security comes from Auth and Row Level Security later — not from hiding the publishable key.
 
 ## Quick Start
 
@@ -483,7 +483,7 @@ The public site must use the **class production** Supabase project — not any s
 2. Name it something like `projects2-production` (not a personal `dev` name)
 3. Use the same Security settings: **Data API on**, **Automatically expose new tables off**, **automatic RLS on**
 4. Run every migration in `supabase/migrations/` in that project's SQL Editor
-5. Copy that project's **Project URL** and **anon public** key
+5. Copy that project's **Project URL** and **publishable** key
 
 ### One-time: repository settings
 
@@ -492,7 +492,7 @@ The public site must use the **class production** Supabase project — not any s
 3. Set Source to **GitHub Actions**
 4. Open **Settings → Secrets and variables → Actions → Variables** and add the **production** values:
    - `VITE_SUPABASE_URL` — production Project URL
-   - `VITE_SUPABASE_ANON_KEY` — production anon public key
+   - `VITE_SUPABASE_PUBLISHABLE_KEY` — production publishable key
 5. Make sure GitHub Actions is allowed to run workflows
 
 ### What happens on push to `main`
@@ -500,7 +500,7 @@ The public site must use the **class production** Supabase project — not any s
 ```text
 push to main
   → GitHub Actions builds with VITE_BASE_PATH=/<repo-name>/
-  → Build embeds the production Supabase URL + anon key from Actions variables
+  → Build embeds the production Supabase URL + publishable key from Actions variables
   → Uploads the dist/ folder
   → Publishes to GitHub Pages
 ```
@@ -521,7 +521,7 @@ npm run preview
 To preview against production data locally, temporarily point a throwaway shell at the production keys (do not commit them):
 
 ```bash
-VITE_SUPABASE_URL=... VITE_SUPABASE_ANON_KEY=... npm run dev
+VITE_SUPABASE_URL=... VITE_SUPABASE_PUBLISHABLE_KEY=... npm run dev
 ```
 
 ## For Instructors: Copying This Template Each Year
@@ -533,7 +533,7 @@ VITE_SUPABASE_URL=... VITE_SUPABASE_ANON_KEY=... npm run dev
 3. **Create the class production Supabase project** and apply `supabase/migrations/`
 4. On the **class repo**, set GitHub Actions variables:
    - `VITE_SUPABASE_URL`
-   - `VITE_SUPABASE_ANON_KEY`
+   - `VITE_SUPABASE_PUBLISHABLE_KEY`
 5. Enable **Pages → GitHub Actions**
 
 You usually do **not** need to hand-edit the Vite base path. The deploy workflow sets:
@@ -561,7 +561,7 @@ When starting the next year, copy the template again (or refresh from it) into a
 
 - Local `.env` is your **dev** project; Pages uses the **production** project from Actions variables
 - Confirm production has the same migrations applied
-- Confirm Actions variables are the class production URL and anon key (not a student's local-dev project)
+- Confirm Actions variables are the class production URL and publishable key (not a student's local-dev project)
 
 </details>
 
@@ -580,7 +580,7 @@ When starting the next year, copy the template again (or refresh from it) into a
 
 - Run `supabase/migrations/001_initial.sql` in the SQL Editor
 - In Supabase **Table Editor**, confirm `demo_messages` exists
-- Confirm the Project URL and anon key belong to the same project
+- Confirm the Project URL and publishable key belong to the same project
 - Try `npm run smoke` for a clearer error message
 
 </details>
@@ -610,7 +610,7 @@ npm run install:school
 
 - Pages source must be **GitHub Actions**
 - Confirm the deploy workflow succeeded under the **Actions** tab
-- Confirm Actions variables `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` are set
+- Confirm Actions variables `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` are set
 - Open the site URL including the repo name subpath (`/your-repo-name/`)
 
 </details>

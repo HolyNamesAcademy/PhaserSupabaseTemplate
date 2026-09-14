@@ -45,7 +45,7 @@ Node version is in `.nvmrc`.
 
 ## Important
 
-- Only use the public anon key in the browser / `VITE_*` variables
-- Never add the service_role key to client code
+- Only use the public publishable key in the browser / `VITE_*` variables
+- Never add the secret key to client code
 - The included demo only checks that Supabase is connected — leave auth and game data for the class to build
 - Do not add React, Spring Boot, or Docker unless asked

@@ -12,7 +12,7 @@ export type DemoMessage = {
 function requireConfigured(): void {
   if (!isSupabaseConfigured()) {
     throw new Error(
-      'Supabase is not configured. Copy .env.example to .env and add your project URL and anon key.',
+      'Supabase is not configured. Copy .env.example to .env and add your project URL and publishable key.',
     );
   }
 }

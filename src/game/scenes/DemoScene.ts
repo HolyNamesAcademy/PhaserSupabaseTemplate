@@ -62,7 +62,7 @@ export class DemoScene extends Phaser.Scene {
         [
           '1. Create a Supabase project',
           '2. Copy .env.example → .env',
-          '3. Paste your Project URL and anon key',
+          '3. Paste your Project URL and publishable key',
           '4. Run supabase/migrations/001_initial.sql',
           '5. Restart npm run dev',
         ].join('\n'),

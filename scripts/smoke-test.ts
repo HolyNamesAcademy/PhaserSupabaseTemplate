@@ -6,7 +6,7 @@
 import { createClient } from '@supabase/supabase-js';
 
 const url = process.env.VITE_SUPABASE_URL;
-const anon = process.env.VITE_SUPABASE_ANON_KEY;
+const publishableKey = process.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
 function fail(message: string): never {
   console.error(`FAIL: ${message}`);
@@ -18,11 +18,18 @@ function ok(message: string): void {
 }
 
 async function main(): Promise<void> {
-  if (!url || !anon || url.includes('YOUR_PROJECT') || anon.includes('YOUR_SUPABASE')) {
-    fail('Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY (copy .env.example → .env).');
+  if (
+    !url ||
+    !publishableKey ||
+    url.includes('YOUR_PROJECT') ||
+    publishableKey.includes('YOUR_SUPABASE_PUBLISHABLE')
+  ) {
+    fail(
+      'Set VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY (copy .env.example → .env).',
+    );
   }
 
-  const supabase = createClient(url, anon);
+  const supabase = createClient(url, publishableKey);
 
   console.log('1) Read demo_messages…');
   const { data, error } = await supabase
