@@ -498,6 +498,38 @@ Students then clone `https://github.com/«CLASS_GITHUB_ORG»/«CLASS_REPO_NAME»
 
 Start the next year with a fresh class repo (and usually a fresh production Supabase project) copied from this template again.
 
+### Syncing template ↔ class (no forks)
+
+Do **not** fork the template into the class repo. Forks complicate student PRs (wrong base repo / confusing upstream). Keep two sibling repos in the same org and push/pull between them with an extra git remote.
+
+| Role | Repo |
+|------|------|
+| Upstream template (shared fixes) | https://github.com/HolyNamesAcademy/PhaserSupabaseTemplate |
+| Class copy (this year) | https://github.com/«CLASS_GITHUB_ORG»/«CLASS_REPO_NAME» |
+
+Land template-level fixes on **PhaserSupabaseTemplate** first, then pull them into the class repo.
+
+On the **class** clone, add the template remote once:
+
+```bash
+git remote add template git@github.com:HolyNamesAcademy/PhaserSupabaseTemplate.git
+```
+
+Pull template fixes into the class repo:
+
+```bash
+git fetch template
+git merge template/main
+# resolve conflicts (placeholders / class-only edits), then:
+git push origin main
+```
+
+Optional on the **template** clone (compare or cherry-pick the other way):
+
+```bash
+git remote add class git@github.com:«CLASS_GITHUB_ORG»/«CLASS_REPO_NAME».git
+```
+
 
 ## Troubleshooting
 
