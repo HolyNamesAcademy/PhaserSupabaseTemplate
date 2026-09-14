@@ -9,7 +9,8 @@ A classroom starter for building a **browser game** with Phaser and Supabase.
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Initial Setup](#initial-setup)
-- [Supabase Setup](#supabase-setup)
+- [Supabase Projects: Local Dev vs Production](#supabase-projects-local-dev-vs-production)
+- [Supabase Setup (Local Dev)](#supabase-setup-local-dev)
 - [Environment Variables](#environment-variables)
 - [Quick Start](#quick-start)
 - [Development URLs](#development-urls)
@@ -29,6 +30,7 @@ A classroom starter for building a **browser game** with Phaser and Supabase.
 
 - **Phaser 3 game project** — TypeScript + Vite with hot reload
 - **Supabase connection demo** — a small screen that proves your project can read from the database
+- **Separate local and production Supabase projects** — each student develops against their own project; GitHub Pages uses the team's shared production project
 - **Service layer** — keep Supabase calls in `src/services/` instead of inside scenes
 - **SQL migrations in git** — starter schema lives in `supabase/migrations/`
 - **GitHub Pages deploy** — push to `main` and GitHub Actions publishes the game
@@ -175,9 +177,9 @@ npm install
 
 </details>
 
-### 6. Configure Supabase
+### 6. Configure Supabase (local dev)
 
-Complete [Supabase Setup](#supabase-setup) and [Environment Variables](#environment-variables) before expecting the demo to succeed.
+Complete [Supabase Projects: Local Dev vs Production](#supabase-projects-local-dev-vs-production), then [Supabase Setup (Local Dev)](#supabase-setup-local-dev) and [Environment Variables](#environment-variables), before expecting the demo to succeed.
 
 ### 7. Verify Your Setup
 
@@ -189,11 +191,38 @@ npm -v
 
 If any of these fail, go back to the relevant step above.
 
-## Supabase Setup
+## Supabase Projects: Local Dev vs Production
 
-Each team should create **its own** Supabase project. Do not share one project across the whole class.
+This course uses **two kinds of Supabase projects**:
 
-1. Go to [https://supabase.com/](https://supabase.com/) and create a new project
+| Project | Who creates it | Used by | Credentials live in |
+|---------|----------------|---------|---------------------|
+| **Local / development** | **Each student** (their own project) | `npm run dev` on their computer | Local `.env` (never committed) |
+| **Production** | **The team** (one shared project) | The game on GitHub Pages | GitHub Actions **variables** on the team repo |
+
+```text
+Student laptop                    Team GitHub Pages site
+──────────────                    ─────────────────────
+.env  →  your Supabase project    Actions vars  →  team production project
+npm run dev                       push to main  →  deployed build
+```
+
+Why split them?
+
+- You can break or reset **your** database while developing without wiping the public site
+- Teammates do not share one fragile database during daily work
+- The live GitHub Pages game talks to one stable production project
+
+**Important:** apply the same SQL migrations to **both** projects when the schema changes. Git is the source of truth for schema (`supabase/migrations/`).
+
+Do **not** put your personal local-dev keys into GitHub Actions. Do **not** put the production keys into your committed files.
+
+## Supabase Setup (Local Dev)
+
+Every student should create **their own** Supabase project for local development.
+
+1. Go to [https://supabase.com/](https://supabase.com/) and create a new project  
+   Tip: name it something like `yourname-teamname-dev`
 2. Wait until the project finishes provisioning
 3. Open **Project Settings → API**
 4. Copy:
@@ -206,7 +235,11 @@ Each team should create **its own** Supabase project. Do not share one project a
 
 That creates a small `demo_messages` table and adds one hello row so you can confirm the connection.
 
+Later, when the team is ready to deploy, create (or reuse) the **team production** project and apply the same migration there. See [Deploying to GitHub Pages](#deploying-to-github-pages).
+
 ## Environment Variables
+
+`.env` is for **your local / development** Supabase project only.
 
 1. Copy the example file:
 
@@ -214,7 +247,7 @@ That creates a small `demo_messages` table and adds one hello row so you can con
 cp .env.example .env
 ```
 
-2. Edit `.env` and paste your values:
+2. Edit `.env` and paste the URL and anon key from **your** local-dev project:
 
 ```bash
 VITE_SUPABASE_URL=https://YOUR_PROJECT_REF.supabase.co
@@ -229,11 +262,13 @@ VITE_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_PUBLIC_KEY
 | `VITE_SUPABASE_ANON_KEY` | Yes | Public client key |
 | `service_role` key | **No** | Never commit or put in Vite / GitHub Pages |
 
+`.env` is gitignored. The **production** URL and anon key belong in GitHub Actions variables, not in `.env` that you commit.
+
 GitHub Pages is a static site. Anything bundled into the client is public. Real security comes from Auth and Row Level Security later — not from hiding the anon key.
 
 ## Quick Start
 
-> **First time?** Finish [Initial Setup](#initial-setup), [Supabase Setup](#supabase-setup), and [Environment Variables](#environment-variables) first.
+> **First time?** Finish [Initial Setup](#initial-setup), [Supabase Setup (Local Dev)](#supabase-setup-local-dev), and [Environment Variables](#environment-variables) first.
 
 1. Start the dev server:
 
@@ -250,7 +285,8 @@ npm run dev
 | Service | URL | Description |
 |---------|-----|-------------|
 | **Game (local)** | http://localhost:5173 | Phaser app + connectivity demo |
-| **Supabase Dashboard** | https://supabase.com/dashboard | Your project's tables, SQL, and API settings |
+| **Your local Supabase** | https://supabase.com/dashboard | The project in your local `.env` |
+| **Team production Supabase** | https://supabase.com/dashboard | Shared project used by GitHub Pages |
 | **GitHub Pages** | `https://<org-or-user>.github.io/<repo-name>/` | Public deployed game (after setup) |
 
 ## Development Commands
@@ -281,7 +317,7 @@ npm run dev
 - Edit scenes in `src/game/scenes/`
 - Put Supabase calls in `src/services/`
 - Save and let Vite hot-reload the browser
-- When the database schema changes, add SQL under `supabase/migrations/` and run it in your Supabase project
+- When the database schema changes, add SQL under `supabase/migrations/`, run it on **your local-dev** project, and make sure the team also applies it to the **production** project before (or when) you deploy
 
 ### Checking Quality Before You Push
 
@@ -381,7 +417,7 @@ Database schema should live in git — not only in the Supabase dashboard.
 
 - Starter file: `supabase/migrations/001_initial.sql`
 - Apply it by pasting into the Supabase **SQL Editor** (simplest on student Windows machines)
-- Add new migration files as your schema grows
+- Run new migrations on **each student's local-dev project** and on the **team production project**
 - Replace the demo table when your real game schema is ready
 
 `demo_messages` is publicly readable so setup works before you add Auth. Private player data should use Auth and stricter RLS policies later.
@@ -390,6 +426,8 @@ Database schema should live in git — not only in the Supabase dashboard.
 
 - **Hot reload:** Vite refreshes the browser when you save TypeScript/CSS files
 - **Env vars:** Only variables starting with `VITE_` are available in the browser
+- **Local `.env`:** points at your personal development Supabase project
+- **GitHub Actions variables:** point the deployed site at the team production Supabase project
 - **Restart after `.env` changes:** Stop and re-run `npm run dev`
 - **Service layer:** Keep Supabase access in `src/services/`
 - **No Docker / Java required:** Supabase hosts the database for you
@@ -403,14 +441,22 @@ The `.github/workflows/` folder contains GitHub Actions that run on pushes and p
 
 ## Deploying to GitHub Pages
 
-### One-time repository settings
+The public site must use the **team production** Supabase project — not any student's local-dev project.
+
+### One-time: create the production Supabase project
+
+1. Create one shared Supabase project for the team (name it something like `teamname-production`)
+2. Run every migration in `supabase/migrations/` in that project's SQL Editor (same files you use locally)
+3. Copy that project's **Project URL** and **anon public** key
+
+### One-time: repository settings
 
 1. Push this project to GitHub
 2. Open repo **Settings → Pages**
 3. Set Source to **GitHub Actions**
-4. Open **Settings → Secrets and variables → Actions → Variables** and add:
-   - `VITE_SUPABASE_URL`
-   - `VITE_SUPABASE_ANON_KEY`
+4. Open **Settings → Secrets and variables → Actions → Variables** and add the **production** values:
+   - `VITE_SUPABASE_URL` — production Project URL
+   - `VITE_SUPABASE_ANON_KEY` — production anon public key
 5. Make sure GitHub Actions is allowed to run workflows
 
 ### What happens on push to `main`
@@ -418,6 +464,7 @@ The `.github/workflows/` folder contains GitHub Actions that run on pushes and p
 ```text
 push to main
   → GitHub Actions builds with VITE_BASE_PATH=/<repo-name>/
+  → Build embeds the production Supabase URL + anon key from Actions variables
   → Uploads the dist/ folder
   → Publishes to GitHub Pages
 ```
@@ -435,9 +482,24 @@ VITE_BASE_PATH=/your-repo-name/ npm run build
 npm run preview
 ```
 
+To preview against production data locally, temporarily point a throwaway shell at the production keys (do not commit them):
+
+```bash
+VITE_SUPABASE_URL=... VITE_SUPABASE_ANON_KEY=... npm run dev
+```
+
 ## Troubleshooting
 
 ### Common Issues
+
+<details>
+<summary><strong>Local works but GitHub Pages shows wrong/empty data</strong></summary>
+
+- Local `.env` is your **dev** project; Pages uses the **production** project from Actions variables
+- Confirm production has the same migrations applied
+- Confirm Actions variables are the production URL and anon key (not a classmate's local project)
+
+</details>
 
 <details>
 <summary><strong>Supabase is not configured</strong></summary>
@@ -519,7 +581,7 @@ npm run build
 
 If you're still stuck:
 
-1. Re-check [Initial Setup](#initial-setup), [Supabase Setup](#supabase-setup), and [Environment Variables](#environment-variables)
+1. Re-check [Initial Setup](#initial-setup), [Supabase Setup (Local Dev)](#supabase-setup-local-dev), and [Environment Variables](#environment-variables)
 2. Run `npm run smoke` and read the error text
 3. Look at the browser console for errors
 4. Ask your instructor or teammates — include what you tried and the exact error message

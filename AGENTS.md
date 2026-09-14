@@ -8,6 +8,13 @@ Notes for AI coding tools (and humans) working in this repo.
 - Supabase for backend data
 - GitHub Pages for hosting
 
+## Supabase environments
+
+- **Local / development:** each student has their own Supabase project; keys go in local `.env`
+- **Production:** one shared team Supabase project; keys go in GitHub Actions variables for Pages
+- Apply the same SQL migrations to both kinds of projects
+- Do not commit production keys into `.env`
+
 ## Layout
 
 - Scenes: `src/game/scenes/`
