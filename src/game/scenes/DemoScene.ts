@@ -13,41 +13,41 @@ export class DemoScene extends Phaser.Scene {
 
   create(): void {
     this.add
-      .text(this.scale.width / 2, 48, 'Supabase Connectivity Demo', {
+      .text(this.scale.width / 2, 64, 'Supabase Connectivity Demo', {
         fontFamily: 'Segoe UI, sans-serif',
-        fontSize: '28px',
+        fontSize: '36px',
         color: '#f4f7fb',
       })
       .setOrigin(0.5);
 
     this.add
-      .text(this.scale.width / 2, 90, 'Replace this scene with your game once setup works.', {
+      .text(this.scale.width / 2, 118, 'Replace this scene with your game once setup works.', {
         fontFamily: 'Segoe UI, sans-serif',
-        fontSize: '16px',
+        fontSize: '20px',
         color: '#a8b3c5',
       })
       .setOrigin(0.5);
 
     this.statusText = this.add
-      .text(this.scale.width / 2, 150, 'Checking configuration…', {
+      .text(this.scale.width / 2, 200, 'Checking configuration…', {
         fontFamily: 'Segoe UI, sans-serif',
-        fontSize: '18px',
+        fontSize: '24px',
         color: '#d7e3f4',
       })
       .setOrigin(0.5);
 
     this.bodyText = this.add
-      .text(this.scale.width / 2, 220, '', {
+      .text(this.scale.width / 2, 280, '', {
         fontFamily: 'Segoe UI, sans-serif',
-        fontSize: '18px',
+        fontSize: '22px',
         color: '#f4f7fb',
         align: 'center',
-        lineSpacing: 8,
-        wordWrap: { width: this.scale.width - 80 },
+        lineSpacing: 10,
+        wordWrap: { width: this.scale.width - 120 },
       })
       .setOrigin(0.5, 0);
 
-    this.createButton(this.scale.height - 70, 'Refresh', () => {
+    this.createButton(this.scale.height - 80, 'Refresh', () => {
       void this.loadMessages();
     });
 
@@ -106,10 +106,10 @@ export class DemoScene extends Phaser.Scene {
     const button = this.add
       .text(this.scale.width / 2, y, label, {
         fontFamily: 'Segoe UI, sans-serif',
-        fontSize: '20px',
+        fontSize: '24px',
         color: '#0b1220',
         backgroundColor: '#3d8bfd',
-        padding: { x: 18, y: 10 },
+        padding: { x: 22, y: 12 },
       })
       .setOrigin(0.5)
       .setInteractive({ useHandCursor: true });
