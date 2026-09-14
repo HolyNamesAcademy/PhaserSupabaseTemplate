@@ -93,7 +93,7 @@ Click Install if prompted. Leave the installer running and move on to VS Code, G
 
 ### 2. Clone the class repository
 
-**Where to put it:** keep school code under your home folder in `~/Development` (that is `/Users/yourname/Development` on a Mac). Do **not** clone into `Documents`, `Desktop`, or `Downloads` on school Macs — those often sync through **iCloud** and cause Git to show every file as changed (permissions).
+**Where to put it:** keep school code under your home folder in `~/Development` (that is `/Users/yourname/Development` on a Mac). On Macs, **Documents is iCloud-synced** (Desktop often is too) — do **not** clone there. iCloud sync flips file permissions and makes Git show every file as changed.
 
 ```bash
 mkdir -p ~/Development
@@ -570,7 +570,7 @@ git status
 
 You should be back to a clean tree (or only your real edits). Then make the name / code change and commit that alone.
 
-If `git status` is still noisy, re-clone under `~/Development` (not `Documents` / Desktop / iCloud), run `git config core.filemode false` again, and continue.
+If `git status` is still noisy, re-clone under `~/Development` (not Mac `Documents` / Desktop — those are iCloud-synced), run `git config core.filemode false` again, and continue.
 
 </details>
 
